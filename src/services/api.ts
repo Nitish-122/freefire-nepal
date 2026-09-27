@@ -48,6 +48,16 @@ export const api = {
     return res.json();
   },
 
+  async startTournament(tournamentId: string) {
+    const res = await fetch('/api/tournaments/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tournamentId }),
+    });
+    if (!res.ok) throw new Error('Failed to start tournament');
+    return res.json();
+  },
+
   async cancelTournamentAndRefund(tournamentId: string, reason: string) {
     const res = await fetch('/api/tournaments/cancel-and-refund', {
       method: 'POST',

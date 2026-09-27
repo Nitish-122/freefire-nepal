@@ -20,7 +20,8 @@ import {
   Smartphone,
   Save,
   CheckCircle2,
-  Timer
+  Timer,
+  Radio
 } from 'lucide-react';
 import { Tournament, UserProfile, TeamRegistration } from '../types';
 import { getTournamentTimes, formatCountdown } from '../utils/timeUtils';
@@ -35,6 +36,7 @@ interface TournamentDetailModalProps {
   onUpdateHostRoomDetails?: (tournamentId: string, roomId: string, roomPassword: string, isReleased: boolean) => void;
   onCancelRegistration?: (tournamentId: string) => void;
   onCancelTournamentWithReason?: (tournamentId: string, reason: string) => void;
+  onStartTournament?: (tournamentId: string) => void;
 }
 
 export const TournamentDetailModal: React.FC<TournamentDetailModalProps> = ({
@@ -47,6 +49,7 @@ export const TournamentDetailModal: React.FC<TournamentDetailModalProps> = ({
   onUpdateHostRoomDetails,
   onCancelRegistration,
   onCancelTournamentWithReason,
+  onStartTournament,
 }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'slots' | 'room' | 'host_controls' | 'results'>('overview');
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
@@ -450,6 +453,24 @@ export const TournamentDetailModal: React.FC<TournamentDetailModalProps> = ({
                           </div>
                         </div>
                       )}
+                    </div>
+                  ) : tournament.status === 'live' ? (
+                    <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-between gap-3">
+                      <div>
+                        <div className="font-bold text-emerald-300 text-sm flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                          <span>Match Already Started (LIVE)</span>
+                        </div>
+                        <div className="text-xs text-neutral-400 mt-0.5">
+                          This match has already started. Joining is now closed.
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setActiveTab('room')}
+                        className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-gaming text-xs font-bold uppercase cursor-pointer whitespace-nowrap"
+                      >
+                        View Room Status
+                      </button>
                     </div>
                   ) : (
                     <div className="p-4 rounded-xl bg-[#0A0A0A] border border-[#262626] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -918,7 +939,34 @@ export const TournamentDetailModal: React.FC<TournamentDetailModalProps> = ({
 
           {/* TAB 4: ROOM HOST CONTROLS (HOST CAN INPUT ROOM ID & PASSWORD 15M BEFORE START) */}
           {activeTab === 'host_controls' && isHost && (
-            <form onSubmit={handleSaveHostCredentials} className="space-y-5">
+            <div className="space-y-5">
+              {/* START MATCH & GO LIVE OPTION */}
+              {tournament.status === 'upcoming' && onStartTournament && (
+                <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950/60 to-[#141414] border border-emerald-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="font-bold text-emerald-300 text-sm uppercase flex items-center gap-1.5">
+                      <Radio className="w-4 h-4 animate-pulse text-emerald-400" />
+                      <span>Start Match & Go Live</span>
+                    </div>
+                    <p className="text-xs text-neutral-400 mt-0.5">
+                      The host must hit Start before playing. This marks the room as LIVE, locks joining, and notifies all players.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onStartTournament(tournament.id);
+                      setSuccessMsg('Match started successfully! Room is now LIVE.');
+                      setTimeout(() => setSuccessMsg(''), 4000);
+                    }}
+                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-gaming text-xs font-bold uppercase transition-colors cursor-pointer whitespace-nowrap shadow-lg shadow-emerald-900/40"
+                  >
+                    🟢 Start Match Now
+                  </button>
+                </div>
+              )}
+
+              <form onSubmit={handleSaveHostCredentials} className="space-y-5">
               <div className="p-4 rounded-xl bg-gradient-to-r from-amber-950/30 to-[#0A0A0A] border border-amber-500/40 text-xs text-neutral-300 space-y-1">
                 <div className="font-bold text-amber-400 flex items-center gap-1.5 text-sm">
                   <Key className="w-4 h-4" />
@@ -976,6 +1024,7 @@ export const TournamentDetailModal: React.FC<TournamentDetailModalProps> = ({
                 </div>
               </div>
             </form>
+            </div>
           )}
 
           {/* TAB 5: RESULTS */}

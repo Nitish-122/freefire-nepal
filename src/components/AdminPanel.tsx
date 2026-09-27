@@ -68,6 +68,7 @@ interface AdminPanelProps {
   onToggleUserStatus: (uid: string) => Promise<void>;
   onUpdateRoomCredentials: (tournamentId: string, roomId: string, roomPassword: string, isReleased: boolean) => Promise<void>;
   onCancelMatchAndRefund: (tournamentId: string, reason: string) => Promise<void>;
+  onStartTournament: (tournamentId: string) => Promise<void>;
   onUpdateSettings: (settings: Partial<SystemSettings>) => Promise<void>;
   onPostNotice: (title: string, content: string) => Promise<void>;
   onDeleteNotice: (id: string) => Promise<void>;
@@ -90,6 +91,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   onToggleUserStatus,
   onUpdateRoomCredentials,
   onCancelMatchAndRefund,
+  onStartTournament,
   onUpdateSettings,
   onPostNotice,
   onDeleteNotice,
@@ -993,6 +995,20 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             <Edit3 className="w-3.5 h-3.5 text-amber-400" />
                             <span>Edit Credentials</span>
                           </button>
+
+                          {/* [START MATCH / GO LIVE] */}
+                          {room.status === 'upcoming' && onStartTournament && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                onStartTournament(room.id);
+                              }}
+                              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/50 text-xs font-bold text-emerald-300 transition-colors cursor-pointer"
+                            >
+                              <Radio className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                              <span>Start Match</span>
+                            </button>
+                          )}
 
                           {/* [CANCEL MATCH & REFUND ALL] */}
                           {!isCancelled && !isCompleted && (

@@ -593,6 +593,42 @@ class DatabaseManager {
     return { tournament: targetTourney, refundsIssued };
   }
 
+  // START TOURNAMENT
+  async startTournament(tournamentId: string) {
+    let targetTourney: any = null;
+
+    const tIndex = this.memoryData.tournaments.findIndex(t => t.id === tournamentId);
+    if (tIndex !== -1) {
+      const t = this.memoryData.tournaments[tIndex];
+      t.status = 'live';
+      if (!t.roomDetails) t.roomDetails = { roomId: '', roomPassword: '', customRules: '', isReleased: true };
+      t.roomDetails.isReleased = true;
+      targetTourney = t;
+      this.saveLocalBackup();
+    }
+
+    if (this.isPostgresConnected && this.pool) {
+      try {
+        const getRes = await this.pool.query('SELECT data FROM tournaments WHERE id = $1', [tournamentId]);
+        if (getRes.rows[0]) {
+          const t = getRes.rows[0].data;
+          t.status = 'live';
+          if (!t.roomDetails) t.roomDetails = { roomId: '', roomPassword: '', customRules: '', isReleased: true };
+          t.roomDetails.isReleased = true;
+          await this.pool.query(
+            'UPDATE tournaments SET data = $1, status = $2, updated_at = NOW() WHERE id = $3',
+            [JSON.stringify(t), 'live', tournamentId]
+          );
+          targetTourney = t;
+        }
+      } catch (e) {
+        console.error('Postgres startTournament error:', e);
+      }
+    }
+
+    return targetTourney;
+  }
+
   // 5. DISTRIBUTE PRIZES
   async distributePrizes(tournamentId: string, resultData: any) {
     let targetTourney: any = null;

@@ -32,7 +32,6 @@ import { WalletModal } from './components/WalletModal';
 import { ProfileModal } from './components/ProfileModal';
 import { AdminPanel } from './components/AdminPanel';
 import { AuthModal } from './components/AuthModal';
-import { GeminiChatWidget } from './components/GeminiChatWidget';
 import logoImg from './assets/images/khiladinepal_logo_1790422424911.jpg';
 
 export default function App() {
@@ -670,6 +669,22 @@ export default function App() {
     showToast('Custom Room ID & Password saved and published to joined players!');
   };
 
+  const handleStartTournament = async (tournamentId: string) => {
+    try {
+      const updated = await api.startTournament(tournamentId);
+      if (updated) {
+        setTournaments(prev => prev.map(t => t.id === tournamentId ? updated : t));
+        if (selectedTournament?.id === tournamentId) {
+          setSelectedTournament(updated);
+        }
+        showToast('Match started successfully! Room is now LIVE.');
+        await refreshAppData();
+      }
+    } catch (e: any) {
+      showToast(e.message || 'Failed to start tournament');
+    }
+  };
+
   // Filtered Tournaments
   const filteredTournaments = tournaments.filter((t) => {
     const matchesMode = selectedMode === 'All' || t.mode === selectedMode;
@@ -756,6 +771,7 @@ export default function App() {
         onToggleUserStatus={handleToggleUserStatus}
         onUpdateRoomCredentials={handleAdminUpdateRoomCredentials}
         onCancelMatchAndRefund={handleAdminCancelMatchAndRefund}
+        onStartTournament={handleStartTournament}
         onUpdateSettings={handleUpdateSettings}
         onPostNotice={handlePostNotice}
         onDeleteNotice={handleDeleteNotice}
@@ -1092,7 +1108,7 @@ export default function App() {
           }
         }}
         walletPoints={walletPoints}
-        onOpenHost={() => setIsHostOpen(true)}
+        onOpenHost={handleOpenHostModal}
         onOpenWallet={() => setIsWalletOpen(true)}
         onOpenProfile={() => setIsProfileOpen(true)}
       />
@@ -1111,6 +1127,7 @@ export default function App() {
         onUpdateHostRoomDetails={handleUpdateHostRoomDetails}
         onCancelRegistration={handleCancelRegistration}
         onCancelTournamentWithReason={handleCancelTournamentWithReason}
+        onStartTournament={handleStartTournament}
       />
 
       <HostMatchModal
@@ -1126,6 +1143,7 @@ export default function App() {
         walletPoints={walletPoints}
         transactions={transactions}
         userProfile={userProfile}
+        adminKhaltiNumber={settings.adminKhaltiNumber}
         onSubmitManualKhaltiDeposit={handleSubmitManualKhaltiDeposit}
         onRequestKhaltiWithdrawal={handleRequestKhaltiWithdrawal}
         onApprovePendingTransaction={handleApprovePendingTransaction}
@@ -1148,8 +1166,6 @@ export default function App() {
         onLoginSuccess={handleLoginSuccess}
         onNavigateAdmin={() => navigateTo('/admin')}
       />
-
-      <GeminiChatWidget />
 
     </div>
   );
