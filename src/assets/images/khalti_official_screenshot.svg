@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1200" width="1080" height="1200">
+  <!-- Background -->
+  <rect width="1080" height="1200" fill="#111111"/>
+
+  <!-- Khalti Brand Header -->
+  <g transform="translate(540, 110)" text-anchor="middle">
+    <!-- Origami bird icon -->
+    <path d="M55,-48 L100,-75 L80,-40 L105,-42 L65,-25 Z" fill="#EE1B24"/>
+    <!-- Text: khalti -->
+    <text font-family="'Inter', -apple-system, sans-serif" font-size="88" font-weight="900" fill="#EE1B24" letter-spacing="-2">khalti</text>
+    <!-- Sub-branding: by IME -->
+    <text y="38" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="700">
+      <tspan fill="#FFFFFF">by </tspan>
+      <tspan fill="#EE1B24">IME</tspan>
+    </text>
+  </g>
+
+  <!-- My QR Code Heading -->
+  <text x="540" y="290" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF">My QR Code</text>
+  <text x="540" y="345" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="26" font-weight="500" fill="#A0A0A0">Show your QR Code to accept payments</text>
+
+  <!-- QR Code White Card Container -->
+  <g transform="translate(190, 420)">
+    <rect width="700" height="700" rx="24" fill="#FFFFFF" filter="drop-shadow(0 20px 30px rgba(0,0,0,0.7))"/>
+    <svg x="35" y="35" width="630" height="630" viewBox="0 0 41 41" shape-rendering="crispEdges">
+      <path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#000000" d="M2 2.5h7m1 0h2m3 0h1m3 0h1m9 0h2m1 0h7M2 3.5h1m5 0h1m1 0h2m3 0h3m1 0h1m4 0h1m3 0h3m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m4 0h4m1 0h1m1 0h2m1 0h4m3 0h1m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h2m5 0h1m2 0h1m1 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m4 0h1m1 0h1m1 0h2m1 0h3m4 0h1m1 0h1m2 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m3 0h4m1 0h1m1 0h2m3 0h1m2 0h1m2 0h1m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h1m2 0h3m5 0h1m2 0h5m1 0h1M2 10.5h1m1 0h2m1 0h3m1 0h3m6 0h1m3 0h1m1 0h2m4 0h1m2 0h1m1 0h2M5 11.5h1m1 0h1m2 0h3m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m2 0h1m2 0h1M2 12.5h2m3 0h2m2 0h5m2 0h2m1 0h2m1 0h4m1 0h1m1 0h2m1 0h1m1 0h2M2 13.5h6m1 0h1m2 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h2m3 0h2M2 14.5h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h6m1 0h4m2 0h2m1 0h2m1 0h1m5 0h1M3 15.5h1m2 0h2m4 0h2m1 0h1m2 0h2m2 0h6m1 0h1m1 0h1m1 0h3m2 0h1M3 16.5h1m4 0h2m1 0h2m3 0h1m1 0h1m3 0h2m3 0h1m1 0h1m1 0h1m1 0h1m2 0h3M2 17.5h3m4 0h1m2 0h2m1 0h1m2 0h1m10 0h2m4 0h1m2 0h1M3 18.5h3m2 0h2m1 0h1m3 0h3m1 0h1m4 0h1m3 0h1m1 0h3m1 0h1m3 0h1M2 19.5h1m2 0h1m1 0h1m2 0h1m4 0h1m3 0h3m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1M2 20.5h1m3 0h1m1 0h4m4 0h1m2 0h2m1 0h2m1 0h3m2 0h5m3 0h1M4 21.5h1m6 0h1m2 0h6m2 0h3m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1M4 22.5h1m2 0h2m1 0h1m2 0h3m1 0h3m1 0h2m1 0h2m6 0h1m1 0h1m1 0h1M2 23.5h2m7 0h1m2 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h1m2 0h1m1 0h6M2 24.5h2m1 0h1m2 0h1m3 0h1m1 0h2m4 0h1m1 0h1m3 0h1m3 0h1m5 0h3M2 25.5h2m1 0h2m2 0h3m3 0h1m1 0h1m1 0h1m6 0h2m1 0h1m3 0h2m1 0h3M3 26.5h6m2 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m1 0h4m1 0h2m1 0h2M3 27.5h1m1 0h1m3 0h1m1 0h1m2 0h2m3 0h1m3 0h3m2 0h2m1 0h2m2 0h1m1 0h1M3 28.5h1m2 0h1m1 0h2m2 0h2m2 0h1m7 0h1m2 0h2m2 0h1m2 0h1M2 29.5h1m2 0h3m4 0h2m1 0h1m1 0h1m3 0h2m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m2 0h2M4 30.5h2m1 0h3m1 0h2m1 0h1m1 0h1m4 0h2m2 0h1m2 0h1m1 0h5m1 0h1M10 31.5h2m2 0h1m3 0h1m3 0h3m4 0h2m3 0h4M2 32.5h7m1 0h2m1 0h2m2 0h1m2 0h1m3 0h1m1 0h2m1 0h2m1 0h1m1 0h2M2 33.5h1m5 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h2m4 0h1m1 0h1m3 0h3M2 34.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h4m2 0h2m3 0h3m1 0h8M2 35.5h1m1 0h3m1 0h1m1 0h6m1 0h2m4 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m2 0h1M2 36.5h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h1m1 0h1m5 0h1m2 0h1m1 0h1m1 0h6M2 37.5h1m5 0h1m3 0h6m1 0h1m1 0h1m2 0h4m1 0h1m1 0h3m1 0h3M2 38.5h7m1 0h1m2 0h1m2 0h1m2 0h1m3 0h1m2 0h1m1 0h4m4 0h1m1 0h1"/>
+    </svg>
+  </g>
+</svg>

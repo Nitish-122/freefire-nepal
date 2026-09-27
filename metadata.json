@@ -1,0 +1,6 @@
+{
+  "name": "Free Fire Esports Nepal",
+  "description": "Nepal's premier Free Fire cash tournament and competitive esports platform. 1 NPR = 1 Point with instant eSewa and Khalti payouts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
